@@ -1,0 +1,48 @@
+[
+    {
+      "type": "swarm",
+      "title": "Odoo Instance Template",
+      "description": "Deploy a multi-version Odoo instance with a custom domain and isolated PostgreSQL database.",
+      "note": "Fill in the variables correctly for version, domain, and database.",
+      "categories": ["Odoo", "ERP", "Client Deploy"],
+      "platform": "linux",
+      "logo": "https://raw.githubusercontent.com/odoo/odoo/16.0/doc/odoo.png",
+      "repository": {
+        "url": "https://github.com/KeikoSolutions/odoo-instance-template",
+        "stackfile": "odoo-template/docker-compose.yml"
+      },
+      "env": [
+        {
+          "name": "INSTANCE_NAME",
+          "label": "Instance Name",
+          "description": "Unique instance identifier (e.g., client123)",
+          "default": "company"
+        },
+        {
+          "name": "INSTANCE_DOMAIN",
+          "label": "Domain",
+          "description": "Full domain of the instance (e.g., client.domain.com)",
+          "default": "company.keikosolutions.com.br"
+        },
+        {
+          "name": "ODOO_VERSION",
+          "label": "Odoo Version",
+          "description": "Odoo version (16.0, 17.0, 18.0)",
+          "default": "16.0"
+        },
+        {
+          "name": "POSTGRES_DB",
+          "label": "Database Name",
+          "description": "Name of the Odoo database instance",
+          "default": "odoo_db"
+        },
+        {
+          "name": "POSTGRES_PASSWORD",
+          "label": "PostgreSQL Password",
+          "description": "Database password",
+          "default": "ChangeMe123!"
+        }
+      ]
+    }
+  ]
+  

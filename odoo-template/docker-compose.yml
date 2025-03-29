@@ -1,0 +1,31 @@
+services:
+  odoo:
+    image: odoo:{{ ODOO_VERSION }}
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD={{ POSTGRES_PASSWORD }}
+      - DATABASE={{ POSTGRES_DB }}
+    volumes:
+      - /srv/odoo/odoo-versions/{{ ODOO_VERSION }}:/usr/lib/python3/dist-packages/odoo
+      - /srv/odoo/custom-addons:/mnt/extra-addons
+      - ./data:/var/lib/odoo
+      - ./config/odoo.conf:/etc/odoo/odoo.conf
+    networks:
+      - traefik_public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.{{ INSTANCE_NAME }}.rule=Host(`{{ INSTANCE_DOMAIN }}`)"
+        - "traefik.http.routers.{{ INSTANCE_NAME }}.entrypoints=websecure"
+        - "traefik.http.routers.{{ INSTANCE_NAME }}.tls=true"
+        - "traefik.http.services.{{ INSTANCE_NAME }}.loadbalancer.server.port=8069"
+        - "traefik.docker.network=traefik_public"
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+
+networks:
+  traefik_public:
+    external: true
