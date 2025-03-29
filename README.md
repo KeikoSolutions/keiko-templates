@@ -1,1 +1,1 @@
-# odoo-instance-template
+# Keiko Templates
