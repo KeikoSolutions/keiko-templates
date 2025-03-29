@@ -10,7 +10,7 @@
       "logo": "https://raw.githubusercontent.com/odoo/odoo/16.0/doc/odoo.png",
       "repository": {
         "url": "https://github.com/KeikoSolutions/odoo-instance-template",
-        "stackfile": "odoo-template/docker-compose.yml"
+        "stackfile": "odoo-instance-template/docker-compose.yml"
       },
       "env": [
         {
